@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>Todo-List</title>
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" />
 </head>
-
 <body>
   <header>
     <nav>
@@ -60,19 +61,29 @@
   </div>
 
   <!-- Display tasks -->
-
-  {% for task in tasks %}
-  <p> {{task}}</p>
-  {% endfor %}
   <ul class="List">
+    {% for task in tasks %}
     <li class="Task" id="Task0">
       <div class="Task-Elements">
         <div class="Finish"></div>
         <div class="Category" style="background-color: rgb(227, 125, 4) "></div>
-        <div class="Name">QWER</div>
+        <div class="Name">{{task.title}}</div>
         <div class="Due">D-1</div>
-        <img class="edit" src="../img/edit.svg" onclick=Edit(0) />
-        <img class="remove" src="../img/remove.svg" onclick="Remove(document.getElementById('Task0'))">
+        <img class="edit" src="{% static 'img/edit.svg'%}" onclick=Edit(0) />
+        <img class="remove" src="{% static 'img/remove.svg'%}" onclick="Remove(document.getElementById('Task0'))">
+    </li>
+    {% endfor %}
+
+
+    {% for task in tasks %}
+  <p> {{task}}</p>
+  <p> {{task.completed}}</p>
+  <p> {{task.category}}</p>
+  <p> {{task.uploaded}}</p>
+  {% endfor %}
+
+    
+    
   </ul>
 
   <!--
@@ -80,8 +91,7 @@
   page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
   teal, blue, blurple, magenta, pink!
   -->
-  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
-  <script src="script.js"></script>
+  <script src="{% static 'js/main.js'%}"></script>
 </body>
 
 </html>
